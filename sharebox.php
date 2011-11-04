@@ -3,7 +3,7 @@
 Plugin Name: Floating Social
 Plugin URI: http://premium.wpmudev.org/project/floating-social
 Description: Make sharing easy - add a floating social media box that scrolls with your content.
-Version: 1.3.3
+Version: 1.3.4
 Author: raggedrobins (Incsub), Ve Bailovity (Incsub)
 Author URI: http://premium.wpmudev.org
 WDP ID: 244

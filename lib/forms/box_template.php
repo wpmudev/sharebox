@@ -38,7 +38,7 @@
 							echo '<a href="http://www.delicious.com/save" onclick="window.open(' .
 								"'http://www.delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;".
 								'">' .
-									'<img src="http://l.yimg.com/hr/15213726/img/delicious.48px.gif" alt="Delicious" />' .
+									'<img src="' . WDSB_PLUGIN_URL . '/img/delicious.48px.gif" alt="Delicious" />' .
 								'</a>';
 							break;
 						case "reddit":
