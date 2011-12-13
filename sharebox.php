@@ -3,7 +3,8 @@
 Plugin Name: Floating Social
 Plugin URI: http://premium.wpmudev.org/project/floating-social
 Description: Make sharing easy - add a floating social media box that scrolls with your content.
-Version: 1.3.4
+Version: 1.3.5
+Text Domain: wdsb
 Author: raggedrobins (Incsub), Ve Bailovity (Incsub)
 Author URI: http://premium.wpmudev.org
 WDP ID: 244
@@ -42,17 +43,17 @@ define ('WDSB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
 if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDSB_PLUGIN_LOCATION', 'mu-plugins', true);
 	define ('WDSB_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR, true);
-	define ('WDSB_PLUGIN_URL', WPMU_PLUGIN_URL, true);
+	define ('WDSB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WPMU_PLUGIN_URL), true);
 	$textdomain_handler = 'load_muplugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDSB_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
 	define ('WDSB_PLUGIN_LOCATION', 'subfolder-plugins', true);
 	define ('WDSB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDSB_PLUGIN_SELF_DIRNAME, true);
-	define ('WDSB_PLUGIN_URL', WP_PLUGIN_URL . '/' . WDSB_PLUGIN_SELF_DIRNAME, true);
+	define ('WDSB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL) . '/' . WDSB_PLUGIN_SELF_DIRNAME, true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . basename(__FILE__))) {
 	define ('WDSB_PLUGIN_LOCATION', 'plugins', true);
 	define ('WDSB_PLUGIN_BASE_DIR', WP_PLUGIN_DIR, true);
-	define ('WDSB_PLUGIN_URL', WP_PLUGIN_URL, true);
+	define ('WDSB_PLUGIN_URL', str_replace('http://', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), WP_PLUGIN_URL), true);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else {
 	// No textdomain is loaded because we can't determine the plugin location.
