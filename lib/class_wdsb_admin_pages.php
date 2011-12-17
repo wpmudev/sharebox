@@ -39,6 +39,7 @@ class Wdsb_AdminPages {
 			}
 			$goback = add_query_arg('settings-updated', 'true',  wp_get_referer());
 			wp_redirect($goback);
+			die;
 		}
 		$page = WP_NETWORK_ADMIN ? 'settings.php' : 'options-general.php';
 		$perms = WP_NETWORK_ADMIN ? 'manage_network_options' : 'manage_options';

@@ -48,6 +48,16 @@
 							if (!in_array('linkedin', $skip_script)) echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>';
 							echo '<script type="IN/Share" data-counter="top"></script>';
 							break;
+						case "post_voting":
+							if (function_exists('wdpv_get_vote_up_ms')) {
+								global $blog_id;
+								$post_id = get_the_ID();
+								if ($post_id) {
+									echo wdpv_get_vote_up_ms(false, $blog_id, $post_id);
+									echo wdpv_get_vote_result_ms(true, $blog_id, $post_id);
+								}
+							}
+							break;
 					}
 				}
 				?>
