@@ -49,7 +49,7 @@
 							echo '<script type="IN/Share" data-counter="top"></script>';
 							break;
 						case "post_voting":
-							if (function_exists('wdpv_get_vote_up_ms')) {
+							if (function_exists('wdpv_get_vote_up_ms') && is_singular()) {
 								global $blog_id;
 								$post_id = get_the_ID();
 								if ($post_id) {

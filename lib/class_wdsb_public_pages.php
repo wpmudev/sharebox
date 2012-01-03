@@ -79,7 +79,7 @@ class Wdsb_PublicPages {
 		global $wp_current_filter;
 		if (defined('WDSB_BOX_CREATED')) return $markup;
 		$show_on_front =  $this->data->get_option('show_on_front_page');
-		if (!is_singular()) {
+		if (!is_page() && !is_singular()) {
 			if (!is_home()) return $markup;
 			else if (!$show_on_front) return $markup;
 		}
