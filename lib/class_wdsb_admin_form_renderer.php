@@ -55,7 +55,7 @@ class Wdsb_AdminFormRenderer {
 		echo "<ul id='wdsb-services'>";
 		foreach ($services as $key => $name) {
 			$disabled = isset($load[$key]) ? '' : 'wdsb-disabled';
-			if ('post_voting' == $key && !function_exists('wdpv_get_vote_up_ms')) continue;
+			if ('post_voting' === $key && !function_exists('wdpv_get_vote_up_ms')) continue;
 			echo "<li class='wdsb-service-item {$disabled}'>";
 			if (is_array($name)) {
 				echo $name['name'] .

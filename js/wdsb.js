@@ -34,6 +34,8 @@ $(function () {
     } else {
     	if ($box.find('iframe').length) $box.find('iframe').load(init);
     	else $win.load(init);
+    	// Try repositioning after a while
+    	$win.load(function () { init(); setTimeout(init, 2000); });
     }
 });
 
