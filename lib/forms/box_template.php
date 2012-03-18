@@ -58,6 +58,28 @@
 								}
 							}
 							break;
+						case "pinterest":
+							$post_id = is_singular() ? get_the_ID() : false;
+							$atts = array();
+							
+							$url = wdsb_get_url($post_id);
+							if ($url) $atts['url'] = 'url=' . rawurlencode($url);
+							
+							$image = wdsb_get_image($post_id);
+							if ($image) $atts['media'] = 'media=' . rawurlencode($image);
+							
+							$description = rawurlencode(wdsb_get_description($post_id));
+							if ($description) $atts['description'] = 'description=' . $description;
+
+							$show = apply_filters('wdsb-buttons-pinterest', !empty($image), $atts);
+							if ($show) {
+								$atts = join('&', $atts); 
+								echo '<a ' .
+									'href="http://pinterest.com/pin/create/button/?' . $atts . '" ' . 
+									'class="pin-it-button" count-layout="vertical">Pin It</a>' .
+									'<script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>' .
+								'';	
+							}
 					}
 				}
 				?>

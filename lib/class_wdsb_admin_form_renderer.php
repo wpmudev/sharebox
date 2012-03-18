@@ -36,6 +36,7 @@ class Wdsb_AdminFormRenderer {
 			'delicious' => 'Del.icio.us',
 			'reddit' => 'Reddit',
 			'linkedin' => 'LinkedIn',
+			'pinterest' => 'Pinterest',
 		);
 		if (function_exists('wdpv_get_vote_up_ms')) $services['post_voting'] = 'Post Voting'; 
 		$externals = array (
@@ -234,13 +235,24 @@ class Wdsb_AdminFormRenderer {
 		echo "<input type='text' size='8' id='wdsb-z-index' name='wdsb[z-index]' value='{$zidx}' />";
 		echo '<div><small>' . __("This value will be applied to the entire floating box", 'wdsb') . '</small></div>';
 
+		echo '<p>';
 		echo "<label for='wdsb-allow_fixed'>" . __('Allow fixed positioning in IE:', 'wdsb') . '</label> ';
 		echo $this->_create_checkbox('allow_fixed');
+		echo '</p>';
 
 		if (!WP_NETWORK_ADMIN) {
-			echo "<br />";
+			echo "<p>";
 			echo "<label for'wdsb-show_on_front_page'>" . __('Show on front page:', 'wdsb') . '</label> ';
 			echo $this->_create_checkbox('show_on_front_page');
+			echo "<br />";
+			echo "<label for'wdsb-show_on_archive_pages'>" . __('Show on archive pages:', 'wdsb') . '</label> ';
+			echo $this->_create_checkbox('show_on_archive_pages');
+			if (defined('BP_VERSION')) {
+				echo '<br />';
+				echo "<label for'wdsb-show_on_buddypress_pages'>" . __('Show on BuddyPress pages:', 'wdsb') . '</label> ';
+				echo $this->_create_checkbox('show_on_buddypress_pages');
+			}
+			echo '</p>';				
 		}
 	}
 
@@ -284,14 +296,14 @@ class Wdsb_AdminFormRenderer {
 
 	function create_front_footer_box () {
 		echo $this->_create_checkbox('front_footer');
-		echo '<div><small>' . __('Some themes may have problems with rendering the social box on front page. Checking this option may help in such situations.', 'wdsb') . '</small></div>';
+		echo '<div><small>' . __('Some themes may have problems with rendering the social box on non-post pages, such as front page or archive pages. Checking this option may help in such situations.', 'wdsb') . '</small></div>';
 
 		$hook = $this->_get_option('front_hook');
 		$hook = $hook ? $hook : 'get_footer';
 		echo '<div id="wdsb_hook_root">' .
 			'<label for="wdsb-front_hook">' . __('Use this hook:', 'wdsb') . '</label> ' .
 			"<input type='text' class='widefat' name='wdsb[front_hook]' id='wdsb-front_hook' value='{$hook}' />" .
-			'<div><small>' . __('<b>Advanced:</b> use this hook for rendering plugin output on front page', 'wdsb') . '</small></div>' .
+			'<div><small>' . __('<b>Advanced:</b> use this hook for rendering plugin output on non-post pages', 'wdsb') . '</small></div>' .
 		'</div>';
 	}
 

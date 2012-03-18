@@ -79,11 +79,12 @@ class Wdsb_PublicPages {
 		global $wp_current_filter;
 		if (defined('WDSB_BOX_CREATED')) return $markup;
 		$show_on_front =  $this->data->get_option('show_on_front_page');
+		$show_on_archive = $this->data->get_option('show_on_archive_pages');
 		if (!is_page() && !is_singular()) {
-			if (!is_home()) return $markup;
-			else if (!$show_on_front) return $markup;
+			if (!is_home() && !is_archive()) return $markup;
+			else if (!$show_on_front && !$show_on_archive) return $markup;
 		}
-		if (is_front_page() && !$show_on_front) return $markup;
+		if ((is_front_page() && !$show_on_front) || (is_archive() && !$show_on_archive)) return $markup;
 
 		$is_excerpt = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/excerpt/", $val);'), false);
 		$is_head = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/head/", $val);'), false);
@@ -122,7 +123,13 @@ class Wdsb_PublicPages {
 
 	function postpone_front_page_init () {
 		if (!$this->data->get_option('front_footer')) return;
-		if (is_home() || is_front_page()) {
+		if (
+			((is_home() || is_front_page()) && $this->data->get_option('show_on_front_page'))
+			||
+			(is_archive() && $this->data->get_option('show_on_archive_pages'))
+			||
+			(function_exists('bp_current_component') && $this->data->get_option('show_on_buddypress_pages') && bp_current_component())
+		) {
 			$hook = $this->data->get_option('front_hook');
 			$hook = $hook ? $hook : 'get_footer';
 			remove_filter('the_content', array($this, 'inject_box_markup'), 1);
@@ -136,9 +143,9 @@ class Wdsb_PublicPages {
 		add_action('wp_print_styles', array($this, 'css_load_styles'));
 
 		add_filter('the_content', array($this, 'inject_box_markup'), 1); // Do this VERY early in content processing
-		if ($this->data->get_option('show_on_front_page')) {
-			if ($this->data->get_option('front_footer')) { //? 'wp_footer' : '';
-				add_action('wp', array($this, 'postpone_front_page_init'));
+		if ($this->data->get_option('show_on_front_page') || $this->data->get_option('show_on_archive_pages') || $this->data->get_option('show_on_buddypress_pages')) {
+			if ($this->data->get_option('front_footer')) {
+				add_action('init', array($this, 'postpone_front_page_init'));
 			} else {
 				add_action('loop_start', array($this, 'inject_box_markup'));
 			}

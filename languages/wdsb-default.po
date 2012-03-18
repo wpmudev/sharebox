@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Floating Social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-12 14:02+0100\n"
-"PO-Revision-Date: 2011-10-12 14:02+0100\n"
+"POT-Creation-Date: 2012-03-18 15:37+0100\n"
+"PO-Revision-Date: 2012-03-18 15:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -22,222 +22,230 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:60
+#: lib/class_wdsb_admin_form_renderer.php:63
 msgid "Remove this service"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:78
+#: lib/class_wdsb_admin_form_renderer.php:81
 msgid "My page already uses scripts from this service"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:90
+#: lib/class_wdsb_admin_form_renderer.php:93
 msgid "Name"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:94
+#: lib/class_wdsb_admin_form_renderer.php:97
 msgid "Code"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:98
+#: lib/class_wdsb_admin_form_renderer.php:101
 msgid "Add"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:108
+#: lib/class_wdsb_admin_form_renderer.php:111
 msgid "Background"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:110
+#: lib/class_wdsb_admin_form_renderer.php:113
 msgid "e.g. <code>#C6C6C6</code>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:113
+#: lib/class_wdsb_admin_form_renderer.php:116
 msgid "Border"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:115
+#: lib/class_wdsb_admin_form_renderer.php:118
 msgid "e.g. <code>2px solid #AAA</code>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:123
+#: lib/class_wdsb_admin_form_renderer.php:126
 msgid "The box will be shown inline in windows narrower then this width <br />This is dependent on your theme layout"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:133
-#: lib/class_wdsb_admin_form_renderer.php:190
+#: lib/class_wdsb_admin_form_renderer.php:136
+#: lib/class_wdsb_admin_form_renderer.php:193
 msgid "Text"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:134
+#: lib/class_wdsb_admin_form_renderer.php:137
 msgid "Page top"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:135
+#: lib/class_wdsb_admin_form_renderer.php:138
 msgid "Page bottom"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:136
-#: lib/class_wdsb_admin_form_renderer.php:192
+#: lib/class_wdsb_admin_form_renderer.php:139
+#: lib/class_wdsb_admin_form_renderer.php:195
 msgid "Selector"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:140
+#: lib/class_wdsb_admin_form_renderer.php:143
 msgid "My box will be vertically positioned with respect to:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:149
-#: lib/class_wdsb_admin_form_renderer.php:216
+#: lib/class_wdsb_admin_form_renderer.php:152
+#: lib/class_wdsb_admin_form_renderer.php:219
 msgid "Offset:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:151
+#: lib/class_wdsb_admin_form_renderer.php:154
 msgid "The box will be shown this far from the top or bottom edge, text, or from your selector below"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:155
-#: lib/class_wdsb_admin_form_renderer.php:222
+#: lib/class_wdsb_admin_form_renderer.php:158
+#: lib/class_wdsb_admin_form_renderer.php:225
 msgid "Stick to element with this selector"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:157
-#: lib/class_wdsb_admin_form_renderer.php:224
+#: lib/class_wdsb_admin_form_renderer.php:160
+#: lib/class_wdsb_admin_form_renderer.php:227
 msgid "e.g. <code>#primary</code>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:169
+#: lib/class_wdsb_admin_form_renderer.php:172
 #, php-format
 msgid "My box will never go higher then %s px, relative to the bottom this element: %s <small>(use a CSS selector, or leave empty to base calculations on page top)</small>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:176
+#: lib/class_wdsb_admin_form_renderer.php:179
 #, php-format
 msgid "My box will never go lower then %s px, relative to the top of this element: %s <small>(use a CSS selector, or leave empty to base calculations on page bottom)</small>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:191
+#: lib/class_wdsb_admin_form_renderer.php:194
 msgid "Page"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:195
+#: lib/class_wdsb_admin_form_renderer.php:198
 msgid "left"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:196
+#: lib/class_wdsb_admin_form_renderer.php:199
 msgid "right"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:200
+#: lib/class_wdsb_admin_form_renderer.php:203
 msgid "Horizontal position of my box will be calculated with respect to"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:208
+#: lib/class_wdsb_admin_form_renderer.php:211
 msgid "side of my"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:218
+#: lib/class_wdsb_admin_form_renderer.php:221
 msgid "The box will be shown this far from the left edge, text, or from your selector below"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:231
+#: lib/class_wdsb_admin_form_renderer.php:234
 msgid "Z index:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:233
+#: lib/class_wdsb_admin_form_renderer.php:236
 msgid "This value will be applied to the entire floating box"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:235
+#: lib/class_wdsb_admin_form_renderer.php:239
 msgid "Allow fixed positioning in IE:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:240
+#: lib/class_wdsb_admin_form_renderer.php:245
 msgid "Show on front page:"
 msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:248
+msgid "Show on archive pages:"
+msgstr ""
+
+#: lib/class_wdsb_admin_form_renderer.php:252
+msgid "Show on BuddyPress pages:"
+msgstr ""
+
+#: lib/class_wdsb_admin_form_renderer.php:262
 msgid "These are some of the selectors you may want to use: <code>#wdsb-share-box</code>, <code>.wdsb-item</code>"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:258
+#: lib/class_wdsb_admin_form_renderer.php:272
 msgid "Do <b>NOT</b> show Floating Social for these types:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:265
+#: lib/class_wdsb_admin_form_renderer.php:279
 msgid "Choose individual entries"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:278
+#: lib/class_wdsb_admin_form_renderer.php:292
 msgid "Show Floating Social metabox in editor:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:285
-msgid "Some themes may have problems with rendering the social box on front page. Checking this option may help in such situations."
+#: lib/class_wdsb_admin_form_renderer.php:299
+msgid "Some themes may have problems with rendering the social box on non-post pages, such as front page or archive pages. Checking this option may help in such situations."
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:290
+#: lib/class_wdsb_admin_form_renderer.php:304
 msgid "Use this hook:"
 msgstr ""
 
-#: lib/class_wdsb_admin_form_renderer.php:292
-msgid "<b>Advanced:</b> use this hook for rendering plugin output on front page"
-msgstr ""
-
-#: lib/class_wdsb_admin_pages.php:52
-msgid "Floating social settings"
+#: lib/class_wdsb_admin_form_renderer.php:306
+msgid "<b>Advanced:</b> use this hook for rendering plugin output on non-post pages"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:53
-msgid "Services"
+msgid "Floating social settings"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:54
-msgid "Add new Custom Service"
+msgid "Services"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:55
-msgid "Appearance"
+msgid "Add new Custom Service"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:56
-msgid "Minimum width"
+msgid "Appearance"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:57
-msgid "Top offset"
+msgid "Minimum width"
 msgstr ""
 
 #: lib/class_wdsb_admin_pages.php:58
+msgid "Top offset"
+msgstr ""
+
+#: lib/class_wdsb_admin_pages.php:59
 msgid "Horizontal offset"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:60
+#: lib/class_wdsb_admin_pages.php:61
 msgid "Advanced settings"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:61
+#: lib/class_wdsb_admin_pages.php:62
 msgid "Advanced"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:62
+#: lib/class_wdsb_admin_pages.php:63
 msgid "Vertical limits"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:63
+#: lib/class_wdsb_admin_pages.php:64
 msgid "Additional CSS"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:64
+#: lib/class_wdsb_admin_pages.php:65
 msgid "Display"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:65
+#: lib/class_wdsb_admin_pages.php:66
 msgid "Attempt to fix front page conflicts"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:88
+#: lib/class_wdsb_admin_pages.php:89
 msgid "Floating Social"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:106
+#: lib/class_wdsb_admin_pages.php:107
 msgid "Hide Floating Social"
 msgstr ""
 

@@ -3,7 +3,7 @@
 Plugin Name: Floating Social
 Plugin URI: http://premium.wpmudev.org/project/floating-social
 Description: Make sharing easy - add a floating social media box that scrolls with your content.
-Version: 1.4.2
+Version: 1.5
 Text Domain: wdsb
 Author: raggedrobins (Incsub), Ve Bailovity (Incsub)
 Author URI: http://premium.wpmudev.org
@@ -63,6 +63,7 @@ if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') &
 $textdomain_handler('wdsb', false, WDSB_PLUGIN_SELF_DIRNAME . '/languages/');
 
 require_once WDSB_PLUGIN_BASE_DIR . '/lib/class_wdsb_options.php';
+require_once WDSB_PLUGIN_BASE_DIR . '/lib/functions.php';
 
 if (is_admin()) {
 	require_once WDSB_PLUGIN_BASE_DIR . '/lib/class_wdsb_admin_form_renderer.php';
