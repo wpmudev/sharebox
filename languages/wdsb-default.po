@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Floating Social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-18 15:37+0100\n"
-"PO-Revision-Date: 2012-03-18 15:37+0100\n"
+"POT-Creation-Date: 2012-05-26 14:14+0100\n"
+"PO-Revision-Date: 2012-05-26 14:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid "e.g. <code>2px solid #AAA</code>"
 msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:126
-msgid "The box will be shown inline in windows narrower then this width <br />This is dependent on your theme layout"
+msgid "The box will be shown inline in windows narrower than this width <br />This is dependent on your theme layout"
 msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:136
@@ -105,12 +105,12 @@ msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:172
 #, php-format
-msgid "My box will never go higher then %s px, relative to the bottom this element: %s <small>(use a CSS selector, or leave empty to base calculations on page top)</small>"
+msgid "My box will never go higher than %s px, relative to the bottom this element: %s <small>(use a CSS selector, or leave empty to base calculations on page top)</small>"
 msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:179
 #, php-format
-msgid "My box will never go lower then %s px, relative to the top of this element: %s <small>(use a CSS selector, or leave empty to base calculations on page bottom)</small>"
+msgid "My box will never go lower than %s px, relative to the top of this element: %s <small>(use a CSS selector, or leave empty to base calculations on page bottom)</small>"
 msgstr ""
 
 #: lib/class_wdsb_admin_form_renderer.php:194

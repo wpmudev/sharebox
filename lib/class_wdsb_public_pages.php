@@ -87,8 +87,9 @@ class Wdsb_PublicPages {
 		if ((is_front_page() && !$show_on_front) || (is_archive() && !$show_on_archive)) return $markup;
 
 		$is_excerpt = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/excerpt/", $val);'), false);
-		$is_head = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/head/", $val);'), false);
+		$is_head = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/head\b|head[^w]/", $val);'), false);
 		$is_title = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/title/", $val);'), false);
+		
 		if ($is_excerpt || $is_head || $is_title) return $markup;
 
 		$prevent_types = $this->data->get_option('prevent_types');

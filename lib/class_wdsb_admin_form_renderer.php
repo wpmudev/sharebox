@@ -123,7 +123,7 @@ class Wdsb_AdminFormRenderer {
 		$width = $this->_get_option('min_width');
 
 		echo "<input type='text' size='4' name='wdsb[min_width]' id='wdsb-min_width' value='{$width}' /> px" .
-			'<div><small>' . __('The box will be shown inline in windows narrower then this width <br />This is dependent on your theme layout', 'wdsb') . '</small></div>' .
+			'<div><small>' . __('The box will be shown inline in windows narrower than this width <br />This is dependent on your theme layout', 'wdsb') . '</small></div>' .
 		'<br />';
 	}
 
@@ -169,14 +169,14 @@ class Wdsb_AdminFormRenderer {
 
 		echo "<div>" .
 			sprintf(
-				__('My box will never go higher then %s px, relative to the bottom this element: %s <small>(use a CSS selector, or leave empty to base calculations on page top)</small>', 'wdsb'),
+				__('My box will never go higher than %s px, relative to the bottom this element: %s <small>(use a CSS selector, or leave empty to base calculations on page top)</small>', 'wdsb'),
 				'<input type="text" name="wdsb[top_limit_offset]" size="3" value="' . $top_offset . '" />',
 				'<input type="text" name="wdsb[top_limit_selector]" size="8" value="' . $top_selector . '" />'
 			) .
 		"</div>";
 		echo "<div>" .
 			sprintf(
-				__('My box will never go lower then %s px, relative to the top of this element: %s <small>(use a CSS selector, or leave empty to base calculations on page bottom)</small>', 'wdsb'),
+				__('My box will never go lower than %s px, relative to the top of this element: %s <small>(use a CSS selector, or leave empty to base calculations on page bottom)</small>', 'wdsb'),
 				'<input type="text" name="wdsb[bottom_limit_offset]" size="3" value="' . $bottom_offset . '" />',
 				'<input type="text" name="wdsb[bottom_limit_selector]" size="8" value="' . $bottom_selector . '" />'
 			) .
