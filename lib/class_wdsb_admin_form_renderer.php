@@ -307,4 +307,13 @@ class Wdsb_AdminFormRenderer {
 		'</div>';
 	}
 
+	function create_manual_box () {
+		echo $this->_create_checkbox('manual_placement');
+		echo '<div><small>' . __('If you enable this option, the box will <b>NOT</b> be auto-added to any of your pages.', 'wdsb') . '</small></div>';
+		echo '<div><small>' . 
+			__('Instead, you can edit your template files to include the box by adding this template tag:', 'wdsb') . 
+			' <code>&lt;?php echo wdsb_get_sharebox(); ?&gt;</code>' .
+		'</small></div>';
+	}
+
 }

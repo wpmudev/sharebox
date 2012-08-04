@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Floating Social\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 14:14+0100\n"
-"PO-Revision-Date: 2012-05-26 14:14+0100\n"
+"POT-Creation-Date: 2012-08-04 15:47+0100\n"
+"PO-Revision-Date: 2012-08-04 15:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: Incsub\n"
 "MIME-Version: 1.0\n"
@@ -189,6 +189,14 @@ msgstr ""
 msgid "<b>Advanced:</b> use this hook for rendering plugin output on non-post pages"
 msgstr ""
 
+#: lib/class_wdsb_admin_form_renderer.php:312
+msgid "If you enable this option, the box will <b>NOT</b> be auto-added to any of your pages."
+msgstr ""
+
+#: lib/class_wdsb_admin_form_renderer.php:314
+msgid "Instead, you can edit your template files to include the box by adding this template tag:"
+msgstr ""
+
 #: lib/class_wdsb_admin_pages.php:53
 msgid "Floating social settings"
 msgstr ""
@@ -241,11 +249,15 @@ msgstr ""
 msgid "Attempt to fix front page conflicts"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:89
+#: lib/class_wdsb_admin_pages.php:67
+msgid "Manual box placement"
+msgstr ""
+
+#: lib/class_wdsb_admin_pages.php:90
 msgid "Floating Social"
 msgstr ""
 
-#: lib/class_wdsb_admin_pages.php:107
+#: lib/class_wdsb_admin_pages.php:108
 msgid "Hide Floating Social"
 msgstr ""
 

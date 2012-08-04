@@ -1,5 +1,7 @@
 <?php
+	global $wp;
 	$url = (is_home() || is_front_page()) ? site_url() : get_permalink();
+	$url = apply_filters('wdsb-url-current_url', ($url ? $url : site_url($wp->request))); // Fix for empty URLs
 ?>
 <?php if ($css) { ?>
 <style type="text/css">

@@ -64,6 +64,7 @@ class Wdsb_AdminPages {
 		add_settings_field('wdsb_css', __('Additional CSS', 'wdsb'), array($form, 'create_css_box'), 'wdsb_options_page', 'wdsb_advanced');
 		add_settings_field('wdsb_display_box', __('Display', 'wdsb'), array($form, 'create_display_box'), 'wdsb_options_page', 'wdsb_advanced');
 		add_settings_field('wdsb_front_footer_box', __('Attempt to fix front page conflicts', 'wdsb'), array($form, 'create_front_footer_box'), 'wdsb_options_page', 'wdsb_advanced');
+		add_settings_field('wdsb_manual_box', __('Manual box placement', 'wdsb'), array($form, 'create_manual_box'), 'wdsb_options_page', 'wdsb_advanced');
 	}
 
 	function create_admin_page () {

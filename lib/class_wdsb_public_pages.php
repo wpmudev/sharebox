@@ -24,6 +24,7 @@ class Wdsb_PublicPages {
 
 
 	function js_load_scripts () {
+		if (defined('WDSB_SCRIPTS_PRINTED')) return false;;
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'));
 
@@ -67,6 +68,7 @@ class Wdsb_PublicPages {
 			$this->data->get_option('bottom_limit_selector'),
 			(int)$this->data->get_option('bottom_limit_offset')
 		);
+		define('WDSB_SCRIPTS_PRINTED', true, true);
 	}
 
 	function css_load_styles () {
@@ -148,13 +150,24 @@ class Wdsb_PublicPages {
 		add_action('wp_print_scripts', array($this, 'js_load_scripts'));
 		add_action('wp_print_styles', array($this, 'css_load_styles'));
 
-		add_filter('the_content', array($this, 'inject_box_markup'), 1); // Do this VERY early in content processing
-		if ($this->data->get_option('show_on_front_page') || $this->data->get_option('show_on_archive_pages') || $this->data->get_option('show_on_buddypress_pages')) {
-			if ($this->data->get_option('front_footer')) {
-				add_action('init', array($this, 'postpone_front_page_init'));
-			} else {
-				add_action('loop_start', array($this, 'inject_box_markup'));
+		if (!$this->data->get_option('manual_placement')) {
+			add_filter('the_content', array($this, 'inject_box_markup'), 1); // Do this VERY early in content processing
+			if ($this->data->get_option('show_on_front_page') || $this->data->get_option('show_on_archive_pages') || $this->data->get_option('show_on_buddypress_pages')) {
+				if ($this->data->get_option('front_footer')) {
+					add_action('init', array($this, 'postpone_front_page_init'));
+				} else {
+					add_action('loop_start', array($this, 'inject_box_markup'));
+				}
 			}
-		}
+		} // else, manual placement through template tag call
 	}
+}
+
+/**
+ * Sharebox fetching template tag.
+ * @return string Floating Social HTML markup.
+ */
+function wdsb_get_sharebox () {
+	$wdsb = new Wdsb_PublicPages;
+	return $wdsb->data->get_option('manual_placement') ? $wdsb->inject_box_markup() : '';
 }
