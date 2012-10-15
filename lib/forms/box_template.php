@@ -24,30 +24,30 @@
 							echo '<g:plusone size="tall"></g:plusone>';
 							break;
 						case "facebook":
-							echo '<iframe src="http://www.facebook.com/plugins/like.php?href=' .
+							echo '<iframe src="' . WDSB_PROTOCOL . 'www.facebook.com/plugins/like.php?href=' .
 								rawurlencode($url) .
 								'&amp;send=false&amp;layout=box_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" ' .
 								'scrolling="no" frameborder="0" style="border:none; width:58px; height:62px;" allowTransparency="true"></iframe>';
 							break;
 						case "twitter":
-							if (!in_array('twitter', $skip_script)) echo '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
-							echo '<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>';
+							if (!in_array('twitter', $skip_script)) echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'platform.twitter.com/widgets.js"></script>';
+							echo '<a href="' . WDSB_PROTOCOL . 'twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>';
 							break;
 						case "stumble_upon":
-							echo '<script src="http://www.stumbleupon.com/hostedbadge.php?s=5"></script>';
+							echo '<script src="' . WDSB_PROTOCOL . 'www.stumbleupon.com/hostedbadge.php?s=5"></script>';
 							break;
 						case "delicious":
-							echo '<a href="http://www.delicious.com/save" onclick="window.open(' .
-								"'http://www.delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;".
+							echo '<a href="' . WDSB_PROTOCOL . 'www.delicious.com/save" onclick="window.open(' .
+								"'" . WDSB_PROTOCOL . "www.delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;".
 								'">' .
 									'<img src="' . WDSB_PLUGIN_URL . '/img/delicious.48px.gif" alt="Delicious" />' .
 								'</a>';
 							break;
 						case "reddit":
-							echo '<script type="text/javascript" src="http://www.reddit.com/static/button/button2.js"></script>';
+							echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'www.reddit.com/static/button/button2.js"></script>';
 							break;
 						case "linkedin":
-							if (!in_array('linkedin', $skip_script)) echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>';
+							if (!in_array('linkedin', $skip_script)) echo '<script src="' . WDSB_PROTOCOL . 'platform.linkedin.com/in.js" type="text/javascript"></script>';
 							echo '<script type="IN/Share" data-counter="top"></script>';
 							break;
 						case "post_voting":
@@ -77,11 +77,31 @@
 							if ($show) {
 								$atts = join('&', $atts); 
 								echo '<a ' .
-									'href="http://pinterest.com/pin/create/button/?' . $atts . '" ' . 
+									'href="' . WDSB_PROTOCOL . 'pinterest.com/pin/create/button/?' . $atts . '" ' . 
 									'class="pin-it-button" count-layout="vertical">Pin It</a>' .
-									'<script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>' .
+									'<script type="text/javascript" src="' . WDSB_PROTOCOL . 'assets.pinterest.com/js/pinit.js"></script>' .
 								'';	
 							}
+							break;
+						case "buffer":
+							$post_id = is_singular() ? get_the_ID() : false;
+							$atts = array();
+
+							$url = wdsb_get_url($post_id);
+							$atts['data-url'] = 'data-url="' . $url . '"';
+							
+							$image = wdsb_get_image($post_id);
+							if ($image) $atts['data-picture'] = 'data-picture="' . $image . '"';
+							
+							$description = wdsb_get_description($post_id);
+							if ($description) $atts['data-text'] = 'data-text="' . $description . '"';
+
+							$atts = apply_filters('wdsb-buttons-buffer-render_attributes', $atts);
+							$atts = join(" ", $atts);
+
+							echo '<a href="' . WDSB_PROTOCOL . 'bufferapp.com/add" class="buffer-add-button" ' . $atts . ' data-count="vertical" >Buffer</a>';
+							if (!in_array('buffer', $skip_script)) echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'static.bufferapp.com/js/button.js"></script>';
+							break;
 					}
 				}
 				?>

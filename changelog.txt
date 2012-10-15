@@ -5,10 +5,15 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.6.1 - 2012-10-15
+----------------------------------------------------------------------
+- Adding Buffer service.
+- Applying protocol define to social button root URL rendering.
+
 1.6 - 2012-08-04
 ----------------------------------------------------------------------
 - Fix for multiple javascript inclusion issue.
-- Fix for empty URLs under certai circumstances.
+- Fix for empty URLs under certain circumstances.
 - Exposing URL as filterable.
 - Added manual placement options and template tag.
 

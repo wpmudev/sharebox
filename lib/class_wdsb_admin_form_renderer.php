@@ -37,12 +37,14 @@ class Wdsb_AdminFormRenderer {
 			'reddit' => 'Reddit',
 			'linkedin' => 'LinkedIn',
 			'pinterest' => 'Pinterest',
+			'buffer' => 'Buffer',
 		);
 		if (function_exists('wdpv_get_vote_up_ms')) $services['post_voting'] = 'Post Voting'; 
 		$externals = array (
 			'google',
 			'twitter',
 			'linkedin',
+			'buffer',
 		);
 
 		$load = $this->_get_option('services');
