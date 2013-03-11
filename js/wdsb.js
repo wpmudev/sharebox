@@ -141,6 +141,7 @@ function scrollDispatcher () {
 
 function assignDimensions () {
 	if ( !$box.hasClass( 'inline' )) {
+		var socWidths = [];
 		$box.find( 'li' ).each( function(){
 			// if iframe in mark-up, assing it's dimensions to container ( for css centering )
 			if ( $( this ).find( 'iframe' ).length ) {
@@ -150,7 +151,14 @@ function assignDimensions () {
 				target.width( iframe.width() ).height( iframe.height() );
 
 			}
+
 		});
+
+		$box.find( '.wdsb-item' ).each( function(){
+			socWidths.push( $(this).width() );
+		});
+
+		$box.css('min-width', Math.max.apply( Math, socWidths )+ 'px' );
 	}
 }
 
