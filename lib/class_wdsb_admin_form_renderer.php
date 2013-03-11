@@ -37,6 +37,7 @@ class Wdsb_AdminFormRenderer {
 			'reddit' => 'Reddit',
 			'linkedin' => 'LinkedIn',
 			'pinterest' => 'Pinterest',
+			'pin_any' => __('Pin any image on page', 'wdsb'),
 			'buffer' => 'Buffer',
 		);
 		if (function_exists('wdpv_get_vote_up_ms')) $services['post_voting'] = 'Post Voting'; 
@@ -45,6 +46,11 @@ class Wdsb_AdminFormRenderer {
 			'twitter',
 			'linkedin',
 			'buffer',
+			'pinterest',
+			'pin_any',
+		);
+		$with_widths = array (
+			'facebook',
 		);
 
 		$load = $this->_get_option('services');
@@ -54,6 +60,9 @@ class Wdsb_AdminFormRenderer {
 
 		$skip = $this->_get_option('skip_script');
 		$skip = is_array($skip) ? $skip : array();
+
+		$custom_widths = $this->_get_option('with_widths');
+		$custom_widths = is_array($custom_widths) ? $custom_widths : array();
 
 		echo "<ul id='wdsb-services'>";
 		foreach ($services as $key => $name) {
@@ -73,16 +82,29 @@ class Wdsb_AdminFormRenderer {
 						(in_array($key, $load) ? "checked='checked'" : "") .
 					"/> " .
 						"<label for='wdsb-services-{$key}'>{$name}</label>" .
-					'<br />';
-				if (in_array($key, $externals)) echo
-					"<input type='checkbox' name='wdsb[skip_script][{$key}]' value='{$key}' " .
-						"id='wdsb-skip_script-{$key}' " .
-						(in_array($key, $skip) ? "checked='checked'" : "") .
-					"/> " .
+					'';
+				if (in_array($key, $externals)) {
+					echo '<br />' .
+						"<input type='checkbox' name='wdsb[skip_script][{$key}]' value='{$key}' " .
+							"id='wdsb-skip_script-{$key}' " .
+							(in_array($key, $skip) ? "checked='checked'" : "") .
+						"/> " .
 						"<label for='wdsb-skip_script-{$key}'>" .
 							'<small>' . __('My page already uses scripts from this service', 'wdsb') . '</small>' .
 						"</label>" .
 					"";
+				}
+				if (in_array($key, $with_widths)) {
+					$width = esc_attr(
+						!empty($custom_widths[$key]) ? $custom_widths[$key] : ''
+					);
+					echo '<br />' .
+						"<label for='wdsb-with_width-{$key}'>" .
+							'<small>' . __('Show at this width (leave empty for default)', 'wdsb') . ': ' .
+							"<input type='text' size='2' maxsize='3' id='wdsb-with_width-{$key}' name='wdsb[with_widths][{$key}]' value='{$width}' />px</small>" .
+						"</label>" .
+					"";
+				}
 			}
 
 			echo "<div class='clear'></div></li>";
@@ -108,24 +130,36 @@ class Wdsb_AdminFormRenderer {
 	function create_appearance_box () {
 		$background = $this->_get_option('background');
 		$border = $this->_get_option('border');
+		$message = esc_attr(wp_strip_all_tags($this->_get_option('message')));
 
 		echo '<label for="wdsb-background">' .
 			__('Background', 'wdsb') . '</label> ' .
 			"<input type='text' class='widefat' name='wdsb[background]' id='wdsb-background' value='{$background}' />" .
-			'<div><small>' . __('e.g. <code>#C6C6C6</code>') . '</small></div>' .
+			'<div><small>' . __('e.g. <code>#C6C6C6</code>', 'wdsb') . '</small></div>' .
 		'<br />';
 		echo '<label for="wdsb-border">' .
 			__('Border', 'wdsb') . '</label> ' .
 			"<input type='text' class='widefat' name='wdsb[border]' id='wdsb-border' value='{$border}' />" .
-			'<div><small>' . __('e.g. <code>2px solid #AAA</code>') . '</small></div>' .
+			'<div><small>' . __('e.g. <code>2px solid #AAA</code>', 'wdsb') . '</small></div>' .
+		'<br />';
+		echo '<label for="wdsb-message">' .
+			__('Message text', 'wdsb') . '</label> ' .
+			"<input type='text' class='widefat' name='wdsb[message]' id='wdsb-message' value='{$message}' />" .
+			'<div><small>' . __('This will be shown beside your social box in supporting browsers only. Leave empty for no message.', 'wdsb') . '</small></div>' .
 		'<br />';
 	}
 
-	function create_min_width_box () {
-		$width = $this->_get_option('min_width');
+	function create_min_dimensions_box () {
+		$width = esc_attr((float)$this->_get_option('min_width'));
+		$post_height = esc_attr((float)$this->_get_option('min_post_height'));
 
-		echo "<input type='text' size='4' name='wdsb[min_width]' id='wdsb-min_width' value='{$width}' /> px" .
+		echo '<label for="wdsb-min_width">' . __('Window width', 'wdsb') . ':</label>&nbsp;' .
+			"<input type='text' size='4' name='wdsb[min_width]' id='wdsb-min_width' value='{$width}' /> px" .
 			'<div><small>' . __('The box will be shown inline in windows narrower than this width <br />This is dependent on your theme layout', 'wdsb') . '</small></div>' .
+		'<br />';
+		echo '<label for="wdsb-min_post_height">' . __('Post height', 'wdsb') . ':</label>&nbsp;' .
+			"<input type='text' size='4' name='wdsb[min_post_height]' id='wdsb-min_post_height' value='{$post_height}' /> px" .
+			'<div><small>' . __('The box will be shown inline for posts shorter than this height <br />Leave empty to disable this check', 'wdsb') . '</small></div>' .
 		'<br />';
 	}
 
@@ -230,6 +264,24 @@ class Wdsb_AdminFormRenderer {
 		'</div>';
 	}
 
+	function create_shortlinks_box () {
+		$shortlink = $this->_get_option('shortlink');
+		$defaults = array(
+			'' => __('Do not use shortlinks - use full URLs instead', 'wdsb'),
+			'default' => __('Use standard WordPress shortlinks', 'wdsb'),
+			'is.gd' => __('Use is.gd URL shortening service', 'wdsb'),
+		);
+		foreach ($defaults as $key => $label) {
+			$checked = $shortlink == $key ? 'checked="checked"' : '';
+			echo '' .
+				"<input type='radio' name='wdsb[shortlink]' id='wdsb-shortlink-{$key}' value='{$key}' {$checked} />" .
+				'&nbsp;' .
+				"<label for='wdsb-shortlink-{$key}'>{$label}</label>" .
+			'<br />';
+		}
+		echo '<div><small>' . __('This option will allows you to select appropriate URL shortening service.', 'wdsb') . '</small></div>';
+	}
+
 	function create_advanced_box () {
 		$zidx = $this->_get_option('z-index');
 		$zidx = $zidx ? $zidx : 10000000;
@@ -253,6 +305,11 @@ class Wdsb_AdminFormRenderer {
 				echo '<br />';
 				echo "<label for'wdsb-show_on_buddypress_pages'>" . __('Show on BuddyPress pages:', 'wdsb') . '</label> ';
 				echo $this->_create_checkbox('show_on_buddypress_pages');
+			}
+			if (class_exists('MarketPress')) {
+				echo '<br />';
+				echo "<label for'wdsb-show_on_marketpress_pages'>" . __('Show on MarketPress pages (except products):', 'wdsb') . '</label> ';
+				echo $this->_create_checkbox('show_on_marketpress_pages');
 			}
 			echo '</p>';				
 		}

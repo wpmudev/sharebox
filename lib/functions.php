@@ -59,3 +59,51 @@ function wdsb_get_url ($post_id=false) {
 		apply_filters('wdsb-media-url-post_url', get_permalink($post_id))
 	);
 }
+
+/**
+ * Permalink wrapper for shortlink processing.
+ */
+function wdsb_get_permalink ($post_id=null) {
+	global $wp;
+	$data = new Wdsb_Options;
+	$use_shortlink_service = $data->get_option('shortlink');
+	$url = false;
+
+	if (!$use_shortlink_service) return apply_filters('wdsb-permalink-url', wdsb_get_url($post_id), $post_id);
+
+	// From here on, we're dealing with shortlinks
+
+	// Get default
+	$url = wp_get_shortlink($post_id, 'query');
+	$url = $url ? $url : site_url($wp->request);
+	
+	if ("is.gd" == $use_shortlink_service) {
+		// First off, check cache - do *not* consult remote service unless we have to
+		$cache = get_option('_wdsb_shortlinks-is.gd');
+		$cache = $cache ? $cache : array();
+		$url_key = md5($url);
+
+		if ($cache && array_key_exists($url_key, $cache)) $url = $cache[$url_key];
+		else {
+			// No cache, consult is.gd and see what do they say
+			$service = sprintf('http://is.gd/create.php?format=simple&url=%s', urlencode($url));
+			$page = wp_remote_request($service, array(
+				"method" => "GET",
+				"timeout" => 5,
+				"redirection" => 5,
+				"user-agent" => "wdsb",
+				"sslverify" => false,
+			));
+			if (!is_wp_error($page) && wp_remote_retrieve_response_code($page) == 200) {
+				$short = wp_remote_retrieve_body($page);
+				if (!preg_match('/error/i', $short)) { // Make double-sure we have a proper URL here
+					$url = $cache[$url_key] = $short;
+					update_option('_wdsb_shortlinks-is.gd', $cache);
+				} // Done caching and post-processing
+			} // Done processing successful request
+		}
+
+	}
+
+	return apply_filters('wdsb-permalink-url', $url, $post_id);
+}

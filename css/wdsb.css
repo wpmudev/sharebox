@@ -11,8 +11,8 @@
 }
 
 #wdsb-share-box ul, #wdsb-share-box ul li {
-	margin: 0; padding: 0;
-	list-style-type: none;
+	margin: 0 !important; padding: 0 !important;
+	list-style-type: none !important;
 }
 
 /*** Inline ***/
@@ -36,4 +36,21 @@
 .wdsb-item { margin:15px auto; text-align: center; }
 #wdsb-service-linkedin { height: 62px; width: 60px; } 
 
-/* 63499-1362954352-ai */
+/* Text message */
+#wdsb-share-box .wdsb-text_message {
+	display: none;
+}
+#wdsb-share-box.wdqs-inline .wdsb-text_message {
+	display: none !important; /* This is so inlined box auto-hides the text message */
+}
+#wdsb-share-box.wdsb-has_message {
+	width: 80px;
+}
+#wdsb-share-box.wdsb-has_message .wdsb-text_message {
+	text-transform: uppercase;
+	color: #ccc;
+	-moz-transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+}

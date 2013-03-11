@@ -43,6 +43,8 @@ class Wdsb_PublicPages {
 			'<script type="text/javascript">
 				var _wdsb_data = {
 					"min_width": %d,
+					"min_post_height": %d,
+					"is_singular": %d,
 					"horizontal_selector": "%s",
 					"top_selector": "%s",
 					"z_index": %d,
@@ -52,6 +54,8 @@ class Wdsb_PublicPages {
 				};
 			</script>',
 			(int)$this->data->get_option('min_width'),
+			(int)$this->data->get_option('min_post_height'),
+			(int)is_singular(),
 			$this->data->get_option('horizontal_selector'),
 			$this->data->get_option('top_selector'),
 			(int)$zidx,
@@ -92,6 +96,12 @@ class Wdsb_PublicPages {
 		if (function_exists('bp_current_component')) {
 			if (!$this->data->get_option('show_on_buddypress_pages') && bp_current_component()) return $markup;
 		}
+
+		// MarketPress virtual subpages
+		if (class_exists('MarketPress') && !$this->data->get_option('show_on_marketpress_pages')) {
+			global $mp;
+			if ($mp->is_shop_page && !is_singular('product')) return $markup;
+		}
 		
 		$is_excerpt = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/excerpt/", $val);'), false);
 		$is_head = array_reduce($wp_current_filter, create_function('$ret,$val', 'return $ret ? true : preg_match("/head\b|head[^w]/", $val);'), false);
@@ -116,6 +126,9 @@ class Wdsb_PublicPages {
 		$skip_script = $this->data->get_option('skip_script');
 		$skip_script = is_array($skip_script) ? $skip_script : array();
 
+		$custom_widths = $this->data->get_option('with_widths');
+		$custom_widths = is_array($custom_widths) ? $custom_widths : array();
+
 		$background = $this->data->get_option('background');
 		$style .= $background ? "background:{$background};" : '';
 
@@ -123,6 +136,10 @@ class Wdsb_PublicPages {
 		$style .= $border ? "border:{$border};" : '';
 
 		$css = $this->data->get_option('css');
+
+		$use_shortlink_service = $this->data->get_option('shortlink');
+
+		$message = wp_strip_all_tags($this->data->get_option('message'));
 
 		include WDSB_PLUGIN_BASE_DIR . '/lib/forms/box_template.php';
 		define('WDSB_BOX_CREATED', true, true);

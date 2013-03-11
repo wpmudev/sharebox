@@ -27,12 +27,12 @@ class Wdsb_AdminPages {
 			if (isset($_POST['wdsb'])) {
 				$services = $_POST['wdsb']['services'];
 				$services = is_array($services) ? $services : array();
-				if (@$_POST['wdsb']['new_service']['name'] && @$_POST['wdsb']['new_service']['code']) {
+				if (!empty($_POST['wdsb']['new_service']['name']) && !empty($_POST['wdsb']['new_service']['code'])) {
 					$services[] = $_POST['wdsb']['new_service'];
 					unset($_POST['wdsb']['new_service']);
 				}
 				foreach ($services as $key=>$service) {
-					$services[$key]['code'] = stripslashes($service['code']);
+					$services[$key]['code'] = empty($service['code']) ? '' : stripslashes($service['code']);
 				}
 				$_POST['wdsb']['services'] = $services;
 				$this->data->set_options($_POST['wdsb']);
@@ -41,9 +41,11 @@ class Wdsb_AdminPages {
 			wp_redirect($goback);
 			die;
 		}
-		$page = WP_NETWORK_ADMIN ? 'settings.php' : 'options-general.php';
-		$perms = WP_NETWORK_ADMIN ? 'manage_network_options' : 'manage_options';
-		add_submenu_page($page, 'Floating Social', 'Floating Social', $perms, 'wdsb', array($this, 'create_admin_page'));
+		$page = is_network_admin() ? 'settings.php' : 'options-general.php';
+		$perms = is_network_admin() ? 'manage_network_options' : 'manage_options';
+		add_submenu_page($page, __('Floating Social', 'wdsb'), __('Floating Social', 'wdsb'), $perms, 'wdsb', array($this, 'create_admin_page'));
+
+		//if (!is_network_admin()) add_dashboard_page(__('Social Stats', 'wdsb'), __('Social Stats', 'wdsb'), $perms, 'wdsb-stats', array($this, 'create_stats_page'));
 	}
 
 	function register_settings () {
@@ -54,11 +56,12 @@ class Wdsb_AdminPages {
 		add_settings_field('wdsb_services', __('Services', 'wdsb'), array($form, 'create_services_box'), 'wdsb_options_page', 'wdsb_settings');
 		add_settings_field('wdsb_custom_service', __('Add new Custom Service', 'wdsb'), array($form, 'create_custom_service_box'), 'wdsb_options_page', 'wdsb_settings');
 		add_settings_field('wdsb_appearance', __('Appearance', 'wdsb'), array($form, 'create_appearance_box'), 'wdsb_options_page', 'wdsb_settings');
-		add_settings_field('wdsb_min_width', __('Minimum width', 'wdsb'), array($form, 'create_min_width_box'), 'wdsb_options_page', 'wdsb_settings');
+		add_settings_field('wdsb_min_width', __('Minimum dimensions', 'wdsb'), array($form, 'create_min_dimensions_box'), 'wdsb_options_page', 'wdsb_settings');
 		add_settings_field('wdsb_top_offset', __('Top offset', 'wdsb'), array($form, 'create_top_offset_box'), 'wdsb_options_page', 'wdsb_settings');
 		add_settings_field('wdsb_horizontal_offset', __('Horizontal offset', 'wdsb'), array($form, 'create_horizontal_offset_box'), 'wdsb_options_page', 'wdsb_settings');
 
 		add_settings_section('wdsb_advanced', __('Advanced settings', 'wdsb'), create_function('', ''), 'wdsb_options_page');
+		add_settings_field('wdsb_shortlinks_box', __('Shortlinks', 'wdsb'), array($form, 'create_shortlinks_box'), 'wdsb_options_page', 'wdsb_advanced');
 		add_settings_field('wdsb_advanced_box', __('Advanced', 'wdsb'), array($form, 'create_advanced_box'), 'wdsb_options_page', 'wdsb_advanced');
 		add_settings_field('wdsb_vertical_limits', __('Vertical limits', 'wdsb'), array($form, 'create_vertical_limits_box'), 'wdsb_options_page', 'wdsb_advanced');
 		add_settings_field('wdsb_css', __('Additional CSS', 'wdsb'), array($form, 'create_css_box'), 'wdsb_options_page', 'wdsb_advanced');
@@ -69,6 +72,48 @@ class Wdsb_AdminPages {
 
 	function create_admin_page () {
 		include(WDSB_PLUGIN_BASE_DIR . '/lib/forms/plugin_settings.php');
+	}
+
+	function create_stats_page () {
+		return false;
+		$stats = array();
+		$columns = array (
+			'_post_id' => __('Post', 'wdsb'),
+			'_post_url' => __('URL', 'wdsb'),
+			'google' => 'Google +1',
+			'facebook' => 'Facebook',
+			'twitter' => 'Twitter',
+			'linkedin' => 'LinkedIn',
+			//'pinterest' => 'Pinterest',
+			//'buffer' => 'Buffer',
+		);
+		$page_size = 10;
+		
+		$current_page = !empty($_REQUEST['paged']) ? (int)$_REQUEST['paged'] : 1;
+		$current_post_type = !empty($_REQUEST['wdsb-post_type']) ? $_REQUEST['wdsb-post_type'] : 'post';
+		$query = new WP_Query(array(
+			'post_type' => $current_post_type,
+			'posts_per_page' => $page_size,
+			'paged' => $current_page,
+		));
+		$posts = $query->posts;
+
+		$total_query = new WP_Query(array(
+			'post_type' => $current_post_type,
+			'posts_per_page' => -1,
+		));
+		$total = count($total_query->posts);
+		$last_page = intval($total / $page_size) + 1;
+
+		$raw_types = get_post_types(array('public'=>true), 'objects');
+		$post_types = array();
+		foreach ($raw_types as $type) {
+			if ('attachment' == $type->name) continue;
+			$post_types[$type->name] = $type->label;
+		}
+
+		wp_enqueue_script('wdsb-admin-stats', WDSB_PLUGIN_URL . '/js/wdsb-admin-stats.js', array('jquery'));
+		include(WDSB_PLUGIN_BASE_DIR . '/lib/forms/plugin_stats.php');
 	}
 
 	function css_print_styles () {
