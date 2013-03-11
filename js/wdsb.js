@@ -105,6 +105,7 @@ function init () {
     	"z-index": parseInt(_wdsb_data.z_index),
     	"position": (($.browser.msie && !_wdsb_data.allow_fixed) ? "absolute" : "fixed")
     });
+    assignDimensions();
     scrollDispatcher();
     $win.unbind('scroll', scrollDispatcher).bind('scroll', scrollDispatcher);
 }
@@ -135,6 +136,21 @@ function scrollDispatcher () {
         	"top": minTop,
         	"left": _wdsb_left_offset
         });
+	}
+}
+
+function assignDimensions () {
+	if ( !$box.hasClass( 'inline' )) {
+		$box.find( 'li' ).each( function(){
+			// if iframe in mark-up, assing it's dimensions to container ( for css centering )
+			if ( $( this ).find( 'iframe' ).length ) {
+				var iframe = $( this ).find( 'iframe' ),
+				    target = $( this ).find( 'div.wdsb-item' );
+
+				target.width( iframe.width() ).height( iframe.height() );
+
+			}
+		});
 	}
 }
 
