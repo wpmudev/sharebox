@@ -14,7 +14,7 @@
 
 <div id="wdsb-share-box" style="<?php echo $style;?>">
 	<?php if (!empty($message)) { ?>
-		<div class="wdsb-text_message" style="display:none"><?php echo $message; ?></div>
+		<span class="wdsb-text_message" style="display:none"><?php echo $message; ?></span>
 	<?php } ?>
 	<ul>
 	<?php foreach ($services as $key=>$service) { ?>

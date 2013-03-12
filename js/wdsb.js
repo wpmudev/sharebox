@@ -112,7 +112,7 @@ function init () {
 	if (transformSupported()) {
 		var $msg = $box.find(".wdsb-text_message");
 		if ($msg.length) {
-			$msg.show();
+			$msg.css('display', 'inline-block');
 			$box.addClass("wdsb-has_message");
 		}
 	}
@@ -182,6 +182,7 @@ function assignDimensions () {
 		});
 
 		$box.css('min-width', Math.max.apply( Math, socWidths )+ 'px' );
+
 	}
 }
 

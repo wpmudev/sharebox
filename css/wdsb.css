@@ -45,12 +45,24 @@
 }
 #wdsb-share-box.wdsb-has_message {
 	width: 80px;
+	background-color: transparent;
 }
+
+#wdsb-share-box.wdsb-has_message ul { 
+	padding: 10px!important; 
+	background-color: #ECF6F9; 
+}
+
 #wdsb-share-box.wdsb-has_message .wdsb-text_message {
 	text-transform: uppercase;
-	color: #ccc;
+	text-align: center;
+	color: #6386a6;
 	-moz-transform:rotate(-90deg);
 	-webkit-transform:rotate(-90deg);
 	-o-transform:rotate(-90deg);
 	-ms-transform:rotate(-90deg);
+	position: relative;
+	/*left:-110px;*/
+	/*top:40px;*/
+	width: 400px;
 }
