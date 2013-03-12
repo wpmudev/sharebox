@@ -55,14 +55,20 @@
 
 #wdsb-share-box.wdsb-has_message .wdsb-text_message {
 	text-transform: uppercase;
-	text-align: center;
+	text-align: left;
 	color: #6386a6;
+	-moz-transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
 	-moz-transform:rotate(-90deg);
 	-webkit-transform:rotate(-90deg);
 	-o-transform:rotate(-90deg);
 	-ms-transform:rotate(-90deg);
-	position: relative;
-	/*left:-110px;*/
-	/*top:40px;*/
-	width: 400px;
+	trasform:rotate(-90deg);
+	position: absolute;
+	left: -3px;
+	bottom: 0;
+	white-space: nowrap;
 }
