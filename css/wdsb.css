@@ -3,7 +3,7 @@
 #wdsb-share-box {
 	background-color: #ECF6F9;
 	width: 55px;
-	padding: 0 15px;
+	padding: 0 15px 0 20px;
 	margin: 0;
 	overflow: hidden;
 	position: absolute;
@@ -55,20 +55,20 @@
 
 #wdsb-share-box.wdsb-has_message .wdsb-text_message {
 	text-transform: uppercase;
-	text-align: left;
+	text-align: center;
 	color: #6386a6;
-	-moz-transform-origin: 0 0;
-	-webkit-transform-origin: 0 0;
-	-o-transform-origin: 0 0;
-	-ms-transform-origin: 0 0;
-	transform-origin: 0 0;
+	-moz-transform-origin: 100% 0;
+	-webkit-transform-origin: 100% 0;
+	-o-transform-origin: 100% 0;
+	-ms-transform-origin: 100% 0;
+	transform-origin: 100% 0;
 	-moz-transform:rotate(-90deg);
 	-webkit-transform:rotate(-90deg);
 	-o-transform:rotate(-90deg);
 	-ms-transform:rotate(-90deg);
 	trasform:rotate(-90deg);
 	position: absolute;
-	left: -3px;
-	bottom: 0;
+	right: 100%;
+	top: 0;
 	white-space: nowrap;
 }

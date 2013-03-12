@@ -113,6 +113,7 @@ function init () {
 		var $msg = $box.find(".wdsb-text_message");
 		if ($msg.length) {
 			$msg.css('display', 'inline-block');
+			$msg.css('min-width', $box.css('height'));
 			$box.addClass("wdsb-has_message");
 		}
 	}
