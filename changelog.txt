@@ -5,6 +5,15 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.7 - 2013-03-12
+----------------------------------------------------------------------
+- Adding support for shortlinks.
+- Allowing for custom widths for defined services.
+- Introducing post height setting.
+- Adding option for MarketPress virtual subpages display.
+- Adding pin any image as a service choice.
+- Adding text message settings.
+
 1.6.1 - 2012-10-15
 ----------------------------------------------------------------------
 - Adding Buffer service.
