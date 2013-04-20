@@ -26,7 +26,7 @@ class Wdsb_PublicPages {
 	function js_load_scripts () {
 		if (defined('WDSB_SCRIPTS_PRINTED')) return false;;
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'));
+		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'), '1.7.1');
 
 		$horizontal_position = $this->data->get_option('horizontal_relative');
 		$horizontal_position = $horizontal_position ? $horizontal_position : "page";
@@ -82,6 +82,7 @@ class Wdsb_PublicPages {
 	}
 
 	function inject_box_markup ($markup='') {
+		if (is_feed()) return $markup; // Don't do this for feeds
 		global $wp_current_filter;
 		if (defined('WDSB_BOX_CREATED')) return $markup;
 		$show_on_front =  $this->data->get_option('show_on_front_page');

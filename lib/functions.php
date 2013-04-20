@@ -63,7 +63,9 @@ function wdsb_get_url ($post_id=false) {
 /**
  * Permalink wrapper for shortlink processing.
  */
-function wdsb_get_permalink ($post_id=null) {
+function wdsb_get_permalink ($post_id=null, $skip_shortlink=false) {
+	if ($skip_shortlink) return apply_filters('wdsb-permalink-url', wdsb_get_url($post_id), $post_id);
+	
 	global $wp;
 	$data = new Wdsb_Options;
 	$use_shortlink_service = $data->get_option('shortlink');

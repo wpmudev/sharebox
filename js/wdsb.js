@@ -171,7 +171,7 @@ function assignDimensions () {
 			if ( $( this ).find( 'iframe' ).length ) {
 				var iframe = $( this ).find( 'iframe' ),
 					target = $( this ).find( 'div.wdsb-item' );
-
+				if (iframe.width() > $box.width()) return true;
 				target.width( iframe.width() ).height( iframe.height() );
 
 			}

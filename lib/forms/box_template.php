@@ -43,7 +43,8 @@
 								? 'data-size="' . (int)$custom_widths['twitter'] . '"'
 								: ''
 							;
-							echo '<a href="' . WDSB_PROTOCOL . 'twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="' . $url . '" ' . $size . '>Tweet</a>';
+							$counturl = $use_shortlink_service ? 'data-counturl="' . wdsb_get_permalink(get_the_ID(), $use_shortlink_service) . '"' : '';
+							echo '<a href="' . WDSB_PROTOCOL . 'twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="' . $url . '" ' . $size . ' ' . $counturl . '>Tweet</a>';
 							break;
 						case "stumble_upon":
 							echo '<script src="' . WDSB_PROTOCOL . 'www.stumbleupon.com/hostedbadge.php?s=5"></script>';
