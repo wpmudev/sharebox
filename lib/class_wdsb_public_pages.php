@@ -26,7 +26,7 @@ class Wdsb_PublicPages {
 	function js_load_scripts () {
 		if (defined('WDSB_SCRIPTS_PRINTED')) return false;;
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'), '1.7.1');
+		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'), '1.7.2');
 
 		$horizontal_position = $this->data->get_option('horizontal_relative');
 		$horizontal_position = $horizontal_position ? $horizontal_position : "page";
@@ -112,6 +112,7 @@ class Wdsb_PublicPages {
 
 		$prevent_types = $this->data->get_option('prevent_types');
 		$prevent_types = is_array($prevent_types) ? $prevent_types : array();
+		$prevent_types = apply_filters('wdsb-core-prevent_types', $prevent_types);
 		if (in_array(@get_post_type(), $prevent_types)) return $markup;
 
 		$prevent_items = $this->data->get_option('prevent_items');
@@ -172,7 +173,7 @@ class Wdsb_PublicPages {
 			add_filter('the_content', array($this, 'inject_box_markup'), 1); // Do this VERY early in content processing
 			if ($this->data->get_option('show_on_front_page') || $this->data->get_option('show_on_archive_pages') || $this->data->get_option('show_on_buddypress_pages')) {
 				if ($this->data->get_option('front_footer')) {
-					add_action('init', array($this, 'postpone_front_page_init'));
+					add_action('wp', array($this, 'postpone_front_page_init'));
 				} else {
 					add_action('loop_start', array($this, 'inject_box_markup'));
 				}

@@ -127,7 +127,7 @@ function init () {
     $box.css({
 		"display": "block",
 		"z-index": parseInt(_wdsb_data.z_index, 10),
-		"position": (($.browser.msie && !_wdsb_data.allow_fixed) ? "absolute" : "fixed")
+		"position": (($.browser && $.browser.msie && !_wdsb_data.allow_fixed) ? "absolute" : "fixed")
     });
     assignDimensions();
     scrollDispatcher();

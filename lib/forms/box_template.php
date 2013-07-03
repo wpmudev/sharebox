@@ -30,9 +30,14 @@
 							echo '<g:plusone size="tall"></g:plusone>';
 							break;
 						case "facebook":
+							$fb_url = (is_home() || is_front_page()) 
+								? site_url() 
+								: wdsb_get_url()
+							;
+							$url = apply_filters('wdsb-url-current_url', ($url ? $url : site_url($wp->request))); // Fix for empty URLs
 							$width = !empty($custom_widths['facebook']) ? (int)$custom_widths['facebook'] : 48;
 							echo '<iframe src="' . WDSB_PROTOCOL . 'www.facebook.com/plugins/like.php?href=' .
-								rawurlencode($url) .
+								rawurlencode($fb_url) .
 								'&amp;send=false&amp;layout=box_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" ' .
 								'scrolling="no" frameborder="0" style="border:none; width:' . $width . 'px; height:61px;" allowTransparency="true"></iframe>';
 							break;
@@ -43,7 +48,7 @@
 								? 'data-size="' . (int)$custom_widths['twitter'] . '"'
 								: ''
 							;
-							$counturl = $use_shortlink_service ? 'data-counturl="' . wdsb_get_permalink(get_the_ID(), $use_shortlink_service) . '"' : '';
+							$counturl = $use_shortlink_service ? 'data-counturl="' . wdsb_get_url(get_the_ID()) . '"' : '';
 							echo '<a href="' . WDSB_PROTOCOL . 'twitter.com/share" class="twitter-share-button" data-count="vertical" data-url="' . $url . '" ' . $size . ' ' . $counturl . '>Tweet</a>';
 							break;
 						case "stumble_upon":

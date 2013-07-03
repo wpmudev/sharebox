@@ -3,7 +3,7 @@
 #wdsb-share-box {
 	background-color: #ECF6F9;
 	width: 55px;
-	padding: 0 15px;
+	padding: 0 15px 0 20px;
 	margin: 0;
 	overflow: hidden;
 	position: absolute;
@@ -20,14 +20,14 @@
 	position: static !important;
 	width: 100%;
 	display: block;
-	height: 65px;
+	min-height: 65px;
 }
 #wdsb-share-box.wdqs-inline ul { 
 	clear: both;
 }
 #wdsb-share-box.wdqs-inline ul li {
 	float: left;
-	margin-right: 10px;
+	margin-right: 10px !important;
 	list-style-type: none !important;
 }
 
@@ -46,7 +46,6 @@
 #wdsb-share-box.wdsb-has_message {
 	width: 80px;
 	background-color: transparent;
-	padding-left: 20px;
 }
 
 #wdsb-share-box.wdsb-has_message ul { 

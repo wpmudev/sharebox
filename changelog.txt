@@ -5,6 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.7.2 - 2013-07-03
+----------------------------------------------------------------------
+- Fix for full URLs/shortlinks consistency.
+- Exposing prevent types for filtering.
+- Additional check for browser object deprecation.
+- Inline position fixes.
+
 1.7.1 - 2013-04-20
 ----------------------------------------------------------------------
 - Additional permalink argument for shortlink skipping.
