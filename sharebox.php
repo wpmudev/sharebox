@@ -5,12 +5,12 @@ Plugin URI: http://premium.wpmudev.org/project/floating-social
 Description: Make sharing easy - add a floating social media box that scrolls with your content.
 Version: 1.7.2
 Text Domain: wdsb
-Author: raggedrobins (Incsub), Ve Bailovity (Incsub)
+Author: WPMU DEV
 Author URI: http://premium.wpmudev.org
 WDP ID: 244
 
 Copyright 2009-2011 Incsub (http://incsub.com)
-
+Authors - raggedrobins (Incsub), Ve Bailovity (Incsub)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
 the Free Software Foundation.
