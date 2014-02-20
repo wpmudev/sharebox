@@ -23,16 +23,19 @@ class Wdsb_AdminPages {
 	}
 
 	function create_site_admin_menu_entry () {
-		if (@$_POST && isset($_POST['option_page']) && 'wdsb' == @$_POST['option_page']) {
+		$perms = is_network_admin() ? 'manage_network_options' : 'manage_options';
+		if (current_user_can($perms) && !empty($_POST) && isset($_POST['option_page']) && 'wdsb' == $_POST['option_page']) {
 			if (isset($_POST['wdsb'])) {
-				$services = $_POST['wdsb']['services'];
+				$services = !empty($_POST['wdsb']['services']) ? $_POST['wdsb']['services'] : array();
 				$services = is_array($services) ? $services : array();
 				if (!empty($_POST['wdsb']['new_service']['name']) && !empty($_POST['wdsb']['new_service']['code'])) {
 					$services[] = $_POST['wdsb']['new_service'];
 					unset($_POST['wdsb']['new_service']);
 				}
 				foreach ($services as $key=>$service) {
-					$services[$key]['code'] = empty($service['code']) ? '' : stripslashes($service['code']);
+					if (!empty($service['code'])) {
+						$services[$key]['code'] = stripslashes($service['code']);
+					}
 				}
 				$_POST['wdsb']['services'] = $services;
 				$this->data->set_options($_POST['wdsb']);
@@ -42,7 +45,6 @@ class Wdsb_AdminPages {
 			die;
 		}
 		$page = is_network_admin() ? 'settings.php' : 'options-general.php';
-		$perms = is_network_admin() ? 'manage_network_options' : 'manage_options';
 		add_submenu_page($page, __('Floating Social', 'wdsb'), __('Floating Social', 'wdsb'), $perms, 'wdsb', array($this, 'create_admin_page'));
 
 		//if (!is_network_admin()) add_dashboard_page(__('Social Stats', 'wdsb'), __('Social Stats', 'wdsb'), $perms, 'wdsb-stats', array($this, 'create_stats_page'));

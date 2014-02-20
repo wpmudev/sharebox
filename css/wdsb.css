@@ -1,5 +1,3 @@
-@CHARSET "UTF-8";
-
 #wdsb-share-box {
 	background-color: #ECF6F9;
 	width: 55px;
@@ -72,3 +70,5 @@
 	top: 0;
 	white-space: nowrap;
 }
+
+#wdsb-service-pinterest, #wdsb-service-pin_any { margin-top: 41px; }

@@ -12,11 +12,11 @@
 </style>
 <?php } ?>
 
-<div id="wdsb-share-box" style="<?php echo $style;?>">
+<div id="wdsb-share-box" <?php echo (empty($message) ? 'style="' . $style . '"' : ''); ?> >
 	<?php if (!empty($message)) { ?>
 		<span class="wdsb-text_message" style="display:none"><?php echo $message; ?></span>
 	<?php } ?>
-	<ul>
+	<ul <?php echo (!empty($message) ? 'style="' . $style . '"' : ''); ?> >
 	<?php foreach ($services as $key=>$service) { ?>
 		<li>
 			<?php $idx = is_array($service) ? strtolower(preg_replace('/[^-a-zA-Z0-9_]/', '', $service['name'])) : $key;?>

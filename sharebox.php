@@ -3,7 +3,7 @@
 Plugin Name: Floating Social
 Plugin URI: http://premium.wpmudev.org/project/floating-social
 Description: Make sharing easy - add a floating social media box that scrolls with your content.
-Version: 1.7.2
+Version: 1.7.3
 Text Domain: wdsb
 Author: WPMU DEV
 Author URI: http://premium.wpmudev.org
@@ -24,18 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-///////////////////////////////////////////////////////////////////////////
-/* -------------------- Update Notifications Notice -------------------- */
-if ( !function_exists( 'wdp_un_check' ) ) {
-	add_action( 'admin_notices', 'wdp_un_check', 5 );
-	add_action( 'network_admin_notices', 'wdp_un_check', 5 );
-	function wdp_un_check() {
-		if ( !class_exists( 'WPMUDEV_Update_Notifications' ) && current_user_can( 'install_plugins' ) )
-			echo '<div class="error fade"><p>' . __('Please install the latest version of <a href="http://premium.wpmudev.org/project/update-notifications/" title="Download Now &raquo;">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href="http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/">More information &raquo;</a>', 'wpmudev') . '</a></p></div>';
-	}
-}
-/* --------------------------------------------------------------------- */
 
 define ('WDSB_PROTOCOL', (@$_SERVER["HTTPS"] == 'on' ? 'https://' : 'http://'), true);
 define ('WDSB_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
@@ -69,6 +57,21 @@ require_once WDSB_PLUGIN_BASE_DIR . '/lib/functions.php';
 if (is_admin()) {
 	require_once WDSB_PLUGIN_BASE_DIR . '/lib/class_wdsb_admin_form_renderer.php';
 	require_once WDSB_PLUGIN_BASE_DIR . '/lib/class_wdsb_admin_pages.php';
+
+	// Setup dashboard notices
+	if (file_exists(WDSB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php')) {
+		global $wpmudev_notices;
+		if (!is_array($wpmudev_notices)) $wpmudev_notices = array();
+		$wpmudev_notices[] = array(
+			'id' => 244,
+			'name' => 'Floating Social',
+			'screens' => array(
+				'settings_page_wdsb',
+				'settings_page_wdsb-network',
+			),
+		);
+		require_once WDSB_PLUGIN_BASE_DIR . '/lib/wpmudev-dash-notification.php';
+	}
 	Wdsb_AdminPages::serve();
 } else {
 	require_once WDSB_PLUGIN_BASE_DIR . '/lib/class_wdsb_public_pages.php';
