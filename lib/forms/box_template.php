@@ -31,10 +31,10 @@
 							break;
 						case "facebook":
 							$fb_url = (is_home() || is_front_page()) 
-								? site_url() 
+								? home_url() 
 								: wdsb_get_url()
 							;
-							$url = apply_filters('wdsb-url-current_url', ($url ? $url : site_url($wp->request))); // Fix for empty URLs
+							$url = apply_filters('wdsb-url-current_url', ($url ? $url : home_url($wp->request))); // Fix for empty URLs
 							$width = !empty($custom_widths['facebook']) ? (int)$custom_widths['facebook'] : 48;
 							echo '<iframe src="' . WDSB_PROTOCOL . 'www.facebook.com/plugins/like.php?href=' .
 								rawurlencode($fb_url) .
@@ -43,7 +43,10 @@
 							break;
 						case "twitter":
 							if (!in_array('twitter', $skip_script)) echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'platform.twitter.com/widgets.js"></script>';
-							$url = wdsb_get_permalink(get_the_ID());
+							$url = is_home() || is_front_page()
+								? home_url()
+								: wdsb_get_permalink(get_the_ID())
+							;
 							$size = !empty($custom_widths['twitter']) 
 								? 'data-size="' . (int)$custom_widths['twitter'] . '"'
 								: ''

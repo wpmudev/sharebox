@@ -26,7 +26,7 @@ class Wdsb_PublicPages {
 	function js_load_scripts () {
 		if (defined('WDSB_SCRIPTS_PRINTED')) return false;;
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'), '1.7.3');
+		wp_enqueue_script('wdsb', WDSB_PLUGIN_URL . '/js/wdsb.js', array('jquery'), '1.7.4');
 
 		$horizontal_position = $this->data->get_option('horizontal_relative');
 		$horizontal_position = $horizontal_position ? $horizontal_position : "page";
