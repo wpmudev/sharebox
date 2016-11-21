@@ -6,7 +6,7 @@ class Wdsb_PublicPages {
 
 	var $data;
 
-	function Wdsb_PublicPages () { $this->__construct(); }
+	//function Wdsb_PublicPages () { $this->__construct(); }
 
 	function __construct () {
 		$this->data = new Wdsb_Options;
@@ -17,7 +17,7 @@ class Wdsb_PublicPages {
 	 *
 	 * @static
 	 */
-	function serve () {
+	public static function serve () {
 		$me = new Wdsb_PublicPages;
 		$me->add_hooks();
 	}

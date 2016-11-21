@@ -6,7 +6,7 @@ class Wdsb_AdminPages {
 
 	var $data;
 
-	function Wdsb_AdminPages () { $this->__construct(); }
+	//function Wdsb_AdminPages () { $this->__construct(); }
 
 	function __construct () {
 		$this->data = new Wdsb_Options;
@@ -17,7 +17,7 @@ class Wdsb_AdminPages {
 	 *
 	 * @static
 	 */
-	function serve () {
+	public static function serve () {
 		$me = new Wdsb_AdminPages;
 		$me->add_hooks();
 	}
