@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-
 .wdsb-service-item {
 	border: 1px solid #ccc;
 	margin-bottom: 12px;
@@ -9,10 +8,9 @@
 	background: #fefefe;
 }
 .wdsb-service-item img {
-	float: left; 
+	float: left;
 	margin-right: 10px;
 }
-
 .wdsb-disabled {
 	background: #ccc;
 }
