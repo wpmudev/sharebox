@@ -1,7 +1,7 @@
 <?php
 	global $wp;
-	$url = (is_home() || is_front_page()) 
-		? site_url() 
+	$url = (is_home() || is_front_page())
+		? site_url()
 		: wdsb_get_permalink()//($use_shortlink_service ? get_permalink()
 	;
 	$url = apply_filters('wdsb-url-current_url', ($url ? $url : site_url($wp->request))); // Fix for empty URLs
@@ -30,16 +30,16 @@
 							echo '<g:plusone size="tall"></g:plusone>';
 							break;
 						case "facebook":
-							$fb_url = (is_home() || is_front_page()) 
-								? home_url() 
+							$fb_url = (is_home() || is_front_page())
+								? home_url()
 								: wdsb_get_url()
 							;
 							$url = apply_filters('wdsb-url-current_url', ($url ? $url : home_url($wp->request))); // Fix for empty URLs
-							$width = !empty($custom_widths['facebook']) ? (int)$custom_widths['facebook'] : 48;
+							$width = !empty($custom_widths['facebook']) ? (int)$custom_widths['facebook'] : 52;
 							echo '<iframe src="' . WDSB_PROTOCOL . 'www.facebook.com/plugins/like.php?href=' .
 								rawurlencode($fb_url) .
 								'&amp;send=false&amp;layout=box_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" ' .
-								'scrolling="no" frameborder="0" style="border:none; width:' . $width . 'px; height:61px;" allowTransparency="true"></iframe>';
+								'scrolling="no" frameborder="0" style="border:none; width:' . $width . 'px; height:42px;" allowTransparency="true"></iframe>';
 							break;
 						case "twitter":
 							if (!in_array('twitter', $skip_script)) echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'platform.twitter.com/widgets.js"></script>';
@@ -47,7 +47,7 @@
 								? home_url()
 								: wdsb_get_permalink(get_the_ID())
 							;
-							$size = !empty($custom_widths['twitter']) 
+							$size = !empty($custom_widths['twitter'])
 								? 'data-size="' . (int)$custom_widths['twitter'] . '"'
 								: ''
 							;
@@ -85,24 +85,24 @@
 						case "pinterest":
 							$post_id = is_singular() ? get_the_ID() : false;
 							$atts = array();
-							
+
 							//$url = wdsb_get_url($post_id);
 							$url = wdsb_get_permalink($post_id);
 							if ($url) $atts['url'] = 'url=' . rawurlencode($url);
-							
+
 							$image = wdsb_get_image($post_id);
 							if ($image) $atts['media'] = 'media=' . rawurlencode($image);
-							
+
 							$description = rawurlencode(wdsb_get_description($post_id));
 							if ($description) $atts['description'] = 'description=' . $description;
 
 							$show = apply_filters('wdsb-buttons-pinterest', !empty($image), $atts);
 							if ($show) {
-								$atts = join('&', $atts); 
+								$atts = join('&', $atts);
 								echo '<a ' .
-									'href="' . WDSB_PROTOCOL . 'pinterest.com/pin/create/button/?' . $atts . '" ' . 
+									'href="' . WDSB_PROTOCOL . 'pinterest.com/pin/create/button/?' . $atts . '" ' .
 									'class="pin-it-button" count-layout="vertical" data-pin-config="above" data-pin-do="buttonPin"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>' .
-								'';	
+								'';
 								if (!in_array('pinterest', $skip_script)) echo '<script type="text/javascript" src="' . WDSB_PROTOCOL . 'assets.pinterest.com/js/pinit.js"></script>';
 							}
 							break;
@@ -119,10 +119,10 @@
 							//$url = wdsb_get_url($post_id);
 							$url = wdsb_get_permalink($post_id);
 							$atts['data-url'] = 'data-url="' . $url . '"';
-							
+
 							$image = wdsb_get_image($post_id);
 							if ($image) $atts['data-picture'] = 'data-picture="' . $image . '"';
-							
+
 							$description = wdsb_get_description($post_id);
 							if ($description) $atts['data-text'] = 'data-text="' . $description . '"';
 
