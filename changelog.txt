@@ -1,9 +1,13 @@
 Plugin Name: Floatin Social
-Author: raggedrobins (Incsub), Ve Bailovity (Incsub)
+Author: raggedrobins (Incsub), Ve Bailovity (Incsub), Joseph Fusco (Incsub)
 
 Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
+
+1.7.5 - 2016-12-20
+----------------------------------------------------------------------
+- Fix issues with share item widths.
 
 1.7.4 - 2014-05-14
 ----------------------------------------------------------------------
